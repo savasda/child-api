@@ -17,16 +17,14 @@ async function bootstrap() {
 
   const usersOptions = new DocumentBuilder()
     .setTitle('Children API')
-    .addTag('Users')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'Token' },
       'access-token',
     )
     .build();
 
-  const usersDocument = SwaggerModule.createDocument(app, usersOptions, {
-    include: [UserModule]
-  });
+
+  const usersDocument = SwaggerModule.createDocument(app, usersOptions);
 
   SwaggerModule.setup('swagger', app, usersDocument);
 
