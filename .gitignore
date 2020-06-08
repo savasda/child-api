@@ -34,3 +34,6 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+server/node_modules/
+
+admin/node_modules/
