@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from './auth.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { ModalAutorize } from '../modal-autorize';
+import { ModalAutorize } from '../components/modal-autorize';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 

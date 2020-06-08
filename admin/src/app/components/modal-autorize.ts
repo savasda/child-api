@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   template: `
@@ -16,13 +18,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           <input formControlName="password" nz-input name="required" required />
         </nz-form-control>
       </nz-form-item>
+      <div (click)="registerUser()" class="register-user-link">
+        <a>Register new user?</a>
+      </div>
     </form>
   `,
+  styles: [`
+    .register-user-link {
+      display: flex;
+      justify-content: flex-end;
+    }
+  `]
 })
 export class ModalAutorize implements OnInit {
   form: FormGroup;
   
-  constructor(private _fb: FormBuilder) {}
+  constructor(
+    private _modalRef: NzModalRef,
+    private _router: Router,
+    private _fb: FormBuilder) {}
+
+  registerUser() {
+    this._router.navigate(['/registration']);
+    this._modalRef.close();
+  }
 
   ngOnInit() {
     this.form = this._fb.group({

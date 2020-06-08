@@ -1,0 +1,26 @@
+
+
+<div nz-row>
+  <div nz-col nzSpan="8" nzOffset="8">
+    <form [formGroup]="form" nz-form>
+      <nz-form-item>
+      <nz-form-label [nzSpan]="5">Login</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="19" nzErrorTip="Input is required">
+        <input formControlName="username" nz-input name="required" required />
+      </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5">Password</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="19" nzErrorTip="Input is required">
+          <input formControlName="password" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="19" [nzOffset]="5">
+          <button (click)="registerUser()" style="width: 100%;" nz-button nzType="primary">Register</button>
+        </nz-form-control>
+
+      </nz-form-item>    
+    </form>
+  </div>
+</div>
