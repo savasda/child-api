@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "child-admin"
+  "defaultProject": "child-admin",
+  "cli": {
+    "analytics": "9d040d3e-b9fd-4dc1-99a2-d8ee1f58cce8"
+  }
 }

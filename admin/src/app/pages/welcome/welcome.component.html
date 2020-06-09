@@ -5,8 +5,8 @@
     <button nz-button nzType="primary">Добавить</button>
   </nz-col>
   <nz-col [nzSpan]="6">
-    <nz-statistic [nzValue]="20" [nzTitle]="'У вас заведено'"></nz-statistic>
+    <nz-statistic [nzValue]="programsQuantity" [nzTitle]="'У вас заведено'"></nz-statistic>
     <div>Программы</div>
-    <button nz-button nzType="primary">Добавить</button>
+    <button (click)="onNavigateToPrograms()" nz-button nzType="primary">Добавить</button>
   </nz-col>
 </nz-row>

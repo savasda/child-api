@@ -57,10 +57,11 @@ export class ProgramController {
   @ApiUnauthorizedResponse()
   @Post('avatar')
   @UseInterceptors(
-    FileInterceptor('image', {
+    FileInterceptor('file', {
       storage: diskStorage({
         destination: './static/avatars/programs', 
         filename: (req, file, cb) => {
+          console.log(file)
           const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
           return cb(null, `${randomName}${extname(file.originalname)}`)
         }
@@ -68,6 +69,7 @@ export class ProgramController {
     }),
   )
   async uloadavatar(@UploadedFile() file) {
+    console.log(file)
     return {path: file.path.replace(/\\/g, '/')};
   }
 }
