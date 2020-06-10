@@ -10,7 +10,7 @@ export class AppController {
 
   @Get('/static/avatars/programs/:fileId')
   async program(@Param('fileId') fileId, @Res() res): Promise<any> {
-    res.sendFile(fileId, { root: 'static/avatars/teachers'});
+    res.sendFile(fileId, { root: 'static/avatars/programs'});
   }
 
 }

@@ -1,3 +1,36 @@
-<nz-upload [nzAction]="url" nzListType="picture">
-  <button nz-button><i nz-icon nzType="upload"></i> Upload</button>
-</nz-upload>
+
+
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <form [formGroup]="form" nz-form>
+      <nz-form-item>
+        <nz-upload (nzChange)="handleChange($event)" [nzAction]="url" nzListType="picture">
+          <button nz-button><i nz-icon nzType="upload"></i>Загрузить ихображение для преподавателя</button>
+        </nz-upload>
+      </nz-form-item>
+        
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Название программы</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <input formControlName="caption" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Описание</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <input formControlName="description" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Продолжительность занятия (мин)</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <input formControlName="duration" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+  </div>
+</div>

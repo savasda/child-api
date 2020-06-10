@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsString, IsNotEmpty, IsNumber } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ProgramDTO {
@@ -16,4 +16,9 @@ export class ProgramDTO {
   @IsNotEmpty()
   @ApiProperty()
   image: string
+
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty()
+  duration: number
 }
