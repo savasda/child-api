@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, UsePipes, UseGuards, UseInterceptors, UploadedFile, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, UsePipes, UseGuards, UseInterceptors, UploadedFile, Put, Delete, Query } from '@nestjs/common';
 import { ProgramService } from './program.service';
 import { ProgramEntity } from '../shared/entities/program.entity';
 import { ProgramDTO } from './models/program.dto';
@@ -7,14 +7,15 @@ import { ApiBearerAuth, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/s
 import { FileInterceptor } from '@nestjs/platform-express';
 import { extname } from 'path';
 import { diskStorage } from  'multer';
+import { PagedRO } from 'shared/entities/paged.ro';
 
 @Controller('program')
 export class ProgramController {
   constructor(private programService: ProgramService){}
 
   @Get()
-  async allPrograms(): Promise<ProgramEntity[]> {
-    return await this.programService.getAll()
+  async allPrograms(@Query() { take, skip }): Promise<PagedRO<ProgramEntity>> {
+    return await this.programService.getAll(take, skip)
   }
 
   @Get(':id')
@@ -46,7 +47,7 @@ export class ProgramController {
   @ApiBearerAuth()
   @ApiOkResponse({ description: 'Create program' })
   @ApiUnauthorizedResponse()
-  @Delete('id')
+  @Delete(':id')
   @UseGuards(new AuthGuard())
   async delete(@Param('id') id: string){
     return await this.programService.delete(id);

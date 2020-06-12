@@ -19,8 +19,13 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.storeService.getPrograms()
-      .pipe(filter(program => program !== null), takeUntil(this.unsubscribe))
-      .subscribe(programs => this.programsQuantity = programs.length )
+      .pipe(
+        filter(program => program !== null), 
+        takeUntil(this.unsubscribe))
+      .subscribe(programs => {
+        this.programsQuantity = programs.tottal;
+        console.log(programs)
+      } )
   }
 
   onNavigateToPrograms() {

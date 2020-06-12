@@ -22,3 +22,4 @@ export class ProgramDTO {
   @ApiProperty()
   duration: number
 }
+

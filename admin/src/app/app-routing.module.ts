@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './components/registraration/registration.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/programs' },
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
   { path: 'programs', loadChildren: () => import('./pages/programs/programs.module').then(m => m.ProgramsModule) },
   { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
   { path: 'registration', component: RegistrationComponent}

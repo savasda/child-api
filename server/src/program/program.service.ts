@@ -4,6 +4,7 @@ import { ProgramEntity } from '../shared/entities/program.entity';
 import { Repository } from 'typeorm';
 import { TeacherEntity } from '../shared/entities/teacher.entity';
 import { ProgramDTO } from './models/program.dto';
+import { PagedRO } from 'shared/entities/paged.ro';
 
 @Injectable()
 export class ProgramService {
@@ -12,10 +13,11 @@ export class ProgramService {
     @InjectRepository(TeacherEntity) private teacherRepository: Repository<TeacherEntity>) {
   }
 
-  async getAll(): Promise<ProgramEntity[]>
+  async getAll(take: number, skip: number): Promise<PagedRO<ProgramEntity>>
   {
     try {
-      return await this.programsReposetory.find();
+      const [data, total] = await this.programsReposetory.findAndCount({take, skip});
+      return new PagedRO(data, total);
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }

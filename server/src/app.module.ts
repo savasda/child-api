@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ import { TeacherModule } from './teacher/teacher.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { ProgramModule } from './program/program.module';
+import { PagerMiddleware } from 'shared/middlewares/pager.middleware';
 
 @Module({
   imports: [
@@ -29,4 +30,11 @@ import { ProgramModule } from './program/program.module';
     },
     ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(PagerMiddleware)
+    .forRoutes(
+      { path: 'program', method: RequestMethod.GET }
+    )
+  }
+}

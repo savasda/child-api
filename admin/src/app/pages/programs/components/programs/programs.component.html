@@ -1,18 +1,28 @@
-<p>programs works!</p>
-<button (click)="onAddNewProgram()" nz-button nzType="primary">
-  Создать программу
-</button>
 
+<div class="buttons">
+  <button (click)="onAddNewProgram()" nz-button nzType="primary">
+    Создать программу
+  </button>  
+</div>
 
-
-
-<nz-table #basicTable [nzData]="(programs$ | async)">
+<ng-container *ngIf="programs">
+<nz-table #basicTable
+  nzShowSizeChanger
+  [nzData]="programs.data"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="programs.tottal"
+  [nzPageSize]="10"
+  [nzPageIndex]="0"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Action</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Продолжительность (мин)</th>
+      <th>Изображение</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,9 +34,12 @@
         <img style="height: 70px; width: 70px;" [src]="program.image" alt="">
       </td>
       <td>
-        <a>Action</a>
-        <a>Delete</a>
+        <div nz-row nzJustify="end" class="controls">
+          <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+          <button (click)="onDelete(program)" nz-button nzType="danger"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </div>
       </td>
     </tr>
   </tbody>
 </nz-table>
+</ng-container>

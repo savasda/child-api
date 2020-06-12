@@ -16,7 +16,7 @@ export class StoreService {
   setTeachers(teachers: Array<Teacher>) {
     this.teachers.next(teachers);
   }
-  getPrograms(): Observable<Array<Program>> {
+  getPrograms(): Observable<any> {
     return this.programs.asObservable();
   }
   getTeachers(): Observable<Array<Teacher>> {

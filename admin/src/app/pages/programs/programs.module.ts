@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [ProgramsComponent, ModalAddProgram],
@@ -22,7 +22,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzFormModule,
     NzInputModule,
     NzTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzIconModule
   ], 
   entryComponents: [ModalAddProgram]
 })
