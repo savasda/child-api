@@ -1,8 +1,10 @@
 <nz-row [nzGutter]="16">
   <nz-col [nzSpan]="6">
-    <nz-statistic [nzValue]="1949101" [nzTitle]="'У вас работает'"></nz-statistic>
+    <ng-container *ngIf="(teachers | async) as data">
+      <nz-statistic [nzValue]="data.tottal" [nzTitle]="'У вас работает'"></nz-statistic>
+    </ng-container>
     <div>Преподавателя</div>
-    <button nz-button nzType="primary">Добавить</button>
+    <button (click)="onNavigateToTeachers()" nz-button nzType="primary">Добавить</button>
   </nz-col>
   <nz-col [nzSpan]="6">
     <nz-statistic [nzValue]="programsQuantity" [nzTitle]="'У вас заведено'"></nz-statistic>

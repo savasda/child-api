@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Program } from '../models/program.model';
 import { take, map, tap } from 'rxjs/operators';
+import { PaginateModel } from '../models/paginate.modal';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,11 +14,16 @@ export class ProgramsService {
   constructor(
     private httpClient: HttpClient,
     private storeService: StoreService){
-      this.getAll().pipe(take(1)).subscribe(data => this.storeService.setPrograms(data))
+      this.getAll(new PaginateModel()).pipe(take(1)).subscribe(data => this.storeService.setPrograms(data))
     }
 
-    getAll(): Observable<Array<Program>> {
-      return this.httpClient.get<Array<Program>>(`${this.env.api_host}/program`)
+    getAll(pageData: PaginateModel): Observable<Array<Program>> {
+      const params = new HttpParams()
+      .set('skip', pageData.skip)
+      .set('take', pageData.take)
+      
+
+      return this.httpClient.get<Array<Program>>(`${this.env.api_host}/program`, {params})
         .pipe(map((programs: any) => {
           programs.data.forEach(element => {
             element.image = `${this.env.api_host}/${element.image}`

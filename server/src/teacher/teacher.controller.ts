@@ -7,6 +7,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { extname } from 'path';
 import { diskStorage } from  'multer';
 import { TeacherEntity } from 'shared/entities/teacher.entity';
+import { PagedRO } from 'shared/entities/paged.ro';
 
 @Controller('teacher')
 export class TeacherController {
@@ -15,8 +16,8 @@ export class TeacherController {
  
 
   @Get()
-  async getAll() {
-    return this.teacherService.getAll();
+  async getAll(@Query() { take, skip }): Promise<PagedRO<TeacherEntity>> {
+    return this.teacherService.getAll(take, skip );
   }
 
   @Get(':id')

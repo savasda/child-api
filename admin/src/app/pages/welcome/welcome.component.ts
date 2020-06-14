@@ -3,6 +3,8 @@ import { StoreService } from 'src/app/services/store.service';
 import { map, filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { TeachersService } from 'src/app/services/teachers.service';
+import { PaginateModel } from 'src/app/models/paginate.modal';
 
 @Component({
   selector: 'app-welcome',
@@ -12,9 +14,11 @@ import { Router } from '@angular/router';
 export class WelcomeComponent implements OnInit, OnDestroy {
   programsQuantity: number;
   unsubscribe = new Subject();
+  teachers = this.teacherService.get(new PaginateModel());
 
   constructor(
     private router: Router,
+    private teacherService: TeachersService,
     private storeService: StoreService) { }
 
   ngOnInit() {
@@ -30,6 +34,9 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
   onNavigateToPrograms() {
     this.router.navigate(['programs'])
+  }
+  onNavigateToTeachers() {
+    this.router.navigate(['teachers'])
   }
 
   ngOnDestroy() {

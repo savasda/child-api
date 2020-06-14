@@ -1,0 +1,45 @@
+
+<div class="buttons">
+  <button (click)="onAddNewTeacher()" nz-button nzType="primary">
+    Создать преподавателя
+  </button>  
+</div>
+
+<ng-container *ngIf="teachers">
+<nz-table #basicTable
+  nzShowSizeChanger
+  [nzData]="teachers.data"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="teachers.tottal"
+  [nzPageSize]="10"
+  [nzPageIndex]="0"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Описание</th>
+      <th>Продолжительность (мин)</th>
+      <th>Изображение</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teacher of basicTable.data">
+      <td>{{teacher.name}}</td>
+      <td>{{teacher.description}}</td>
+      <td>{{teacher.occupation}}</td>
+      <td>
+        <img style="height: 70px; width: 70px;" [src]="teacher.image" alt="">
+      </td>
+      <td>
+        <div nz-row nzJustify="end" class="controls">
+          <button (click)="onEditTeacher(teacher)" nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+          <button (click)="onDeleteTeacher(teacher)" nz-button nzType="danger"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+</ng-container>

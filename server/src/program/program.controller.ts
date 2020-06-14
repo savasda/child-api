@@ -45,7 +45,7 @@ export class ProgramController {
   }
 
   @ApiBearerAuth()
-  @ApiOkResponse({ description: 'Create program' })
+  @ApiOkResponse({ description: 'Delete program' })
   @ApiUnauthorizedResponse()
   @Delete(':id')
   @UseGuards(new AuthGuard())

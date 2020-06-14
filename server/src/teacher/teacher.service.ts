@@ -5,6 +5,7 @@ import { Repository, In } from 'typeorm';
 import { ProgramEntity } from '../shared/entities/program.entity';
 import {getRepository} from "typeorm";
 import { distinctByProperty } from 'shared/utils';
+import { PagedRO } from 'shared/entities/paged.ro';
 
 @Injectable()
 export class TeacherService {
@@ -14,11 +15,15 @@ export class TeacherService {
     @InjectRepository(TeacherEntity) private teacherRepository: Repository<TeacherEntity>) {
   }
 
-  async getAll(): Promise<TeacherEntity[]> {
+  async getAll(take, skip): Promise<PagedRO<TeacherEntity>> {
     try {
-      return await this.teacherRepository.find({
+      const [data, total] = await this.teacherRepository.findAndCount({
+        take,
+        skip,
         relations: ['programs']
       });
+      return new PagedRO(data, total);
+
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST)
     }
@@ -60,8 +65,7 @@ export class TeacherService {
   async delete(id: string) : Promise<TeacherEntity>{
     try {
       const teacher =  await this.teacherRepository.findOne({where: {id}});
-      Logger.log(teacher)
-      await this.teacherRepository.delete(teacher);
+      await this.teacherRepository.remove(teacher);
       return teacher;
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST)

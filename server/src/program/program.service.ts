@@ -16,7 +16,7 @@ export class ProgramService {
   async getAll(take: number, skip: number): Promise<PagedRO<ProgramEntity>>
   {
     try {
-      const [data, total] = await this.programsReposetory.findAndCount({take, skip});
+      const [data, total] = await this.programsReposetory.findAndCount({take, skip, relations: ['teachers']});
       return new PagedRO(data, total);
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)

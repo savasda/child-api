@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProgramsComponent } from './components/programs/programs.component';
 import { ProgramsRoutingModule } from './programs.routing.module';
-import { ModalAddProgram } from './components/modal-add-program/modal-add-program.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -11,9 +9,12 @@ import { NzInputModule } from 'ng-zorro-antd';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { ProgramsComponent } from './programs/programs.component';
+import { ModalAddProgram } from './modal-add-program/modal-add-program.component';
+import { ModalEditProgramComponent } from './modal-edit-program/modal-edit-program.component';
 
 @NgModule({
-  declarations: [ProgramsComponent, ModalAddProgram],
+  declarations: [ProgramsComponent, ModalAddProgram, ModalEditProgramComponent],
   imports: [
     CommonModule,
     ProgramsRoutingModule,
@@ -25,6 +26,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     ReactiveFormsModule,
     NzIconModule
   ], 
-  entryComponents: [ModalAddProgram]
+  entryComponents: [ModalAddProgram, ModalEditProgramComponent]
 })
 export class ProgramsModule { }

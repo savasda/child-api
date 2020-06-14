@@ -4,10 +4,11 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 
 import { WelcomeComponent } from './welcome.component';
 import { NgZorroAntdModule} from 'ng-zorro-antd';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NgZorroAntdModule],
+  imports: [CommonModule, WelcomeRoutingModule, NgZorroAntdModule],
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
 })
