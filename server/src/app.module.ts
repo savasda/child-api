@@ -9,7 +9,7 @@ import { TeacherModule } from './teacher/teacher.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { ProgramModule } from './program/program.module';
-import { PagerMiddleware } from 'shared/middlewares/pager.middleware';
+import { PagerMiddleware } from './shared/middlewares/pager.middleware';
 
 @Module({
   imports: [

@@ -4,7 +4,7 @@ import { ProgramEntity } from '../shared/entities/program.entity';
 import { Repository } from 'typeorm';
 import { TeacherEntity } from '../shared/entities/teacher.entity';
 import { ProgramDTO } from './models/program.dto';
-import { PagedRO } from 'shared/entities/paged.ro';
+import { PagedRO } from '../shared/entities/paged.ro';
 
 @Injectable()
 export class ProgramService {

@@ -24,13 +24,11 @@ export class ProgramsComponent implements OnInit {
    private modalService: NzModalService) {}
 
   ngOnInit(): void {
-   this.storeService.getPrograms().subscribe(pr => this.programs = pr);
+    this.getPrograms(new PaginateModel());
   }
 
   onDelete(program) {
-    this.programService.delete(program.id).pipe(
-      switchMap(() => this.programService.getAll(new PaginateModel()))
-    ).subscribe(programs => this.storeService.setPrograms(programs))
+    this.programService.delete(program.id).subscribe(() => this.getPrograms(new PaginateModel()))
   }
 
   onQueryParamsChange(params:PaginatorInterface) {
@@ -56,8 +54,8 @@ export class ProgramsComponent implements OnInit {
         onClick: () => {
           this.programService.create(modalRef.getContentComponent().form.value)
             .pipe(switchMap(() => this.programService.getAll(new PaginateModel())))
-            .subscribe(programs => {
-              this.storeService.setPrograms(programs);
+            .subscribe(() => {
+              this.getPrograms(new PaginateModel())
             }, err => new Error(err), () => modalRef.close())
         }
       }]

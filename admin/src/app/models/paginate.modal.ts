@@ -1,8 +1,8 @@
 export interface PaginatorInterface {
   pageIndex: number;
   pageSize: number;
-  sort: Array<{ key: string; value: 'ascend' | 'descend' | null }>;
-  filter: Array<{ key: string; value: any | any[] }>;
+  sort?: Array<{ key: string; value: 'ascend' | 'descend' | null }>;
+  filter?: Array<{ key: string; value: any | any[] }>;
 }
 
 export class PaginateModel {

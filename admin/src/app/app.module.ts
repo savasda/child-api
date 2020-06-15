@@ -23,6 +23,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { RegistrationComponent } from './components/registraration/registration.component';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 registerLocaleData(ru);
 
@@ -36,6 +37,8 @@ registerLocaleData(ru);
     BrowserModule,
     AppRoutingModule,
     IconsProviderModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
     NzLayoutModule,
     NzMenuModule,
     HttpClientModule,

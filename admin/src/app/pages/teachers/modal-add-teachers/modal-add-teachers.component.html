@@ -1,1 +1,51 @@
-<p>modal-add-teachers works!</p>
+
+
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <form [formGroup]="form" nz-form>
+      <nz-form-item>
+        <nz-upload (nzChange)="handleChange($event)" [nzAction]="url" nzListType="picture">
+          <button nz-button><i nz-icon nzType="upload"></i>Загрузить ихображение для преподавателя</button>
+        </nz-upload>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Имя преподавателя</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <input formControlName="name" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+        
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Предмет</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <input formControlName="occupation" nz-input name="required" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24">Короткое описание преподавателя</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <textarea [froalaEditor] formControlName="description"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      
+
+    </form>
+
+      <nz-form-item *ngIf="programs">
+        <nz-form-label [nzSpan]="24">Выбрать предметы которые ведет преподаватель</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Поле обязательное для заполнения">
+          <div nz-row>
+            <div *ngFor="let program of programs" nz-col nzSpan="12">
+              <label nz-checkbox [(ngModel)]="program.checked">{{program.caption}}</label>
+            </div>  
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+
+  </div>
+</div>

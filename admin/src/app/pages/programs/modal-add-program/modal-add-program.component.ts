@@ -14,7 +14,6 @@ export class ModalAddProgram implements OnInit{
   private env = environment;
   url = `${this.env.api_host}/program/avatar`;
   form: FormGroup;
-  private isDisabledFields = true;
 
   constructor(
     private fb: FormBuilder,

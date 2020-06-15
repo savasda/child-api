@@ -1,11 +1,10 @@
-import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TeacherEntity } from '../shared/entities/teacher.entity';
 import { Repository, In } from 'typeorm';
 import { ProgramEntity } from '../shared/entities/program.entity';
-import {getRepository} from "typeorm";
-import { distinctByProperty } from 'shared/utils';
-import { PagedRO } from 'shared/entities/paged.ro';
+import { distinctByProperty } from '../shared/utils';
+import { PagedRO } from '../shared/entities/paged.ro';
 
 @Injectable()
 export class TeacherService {

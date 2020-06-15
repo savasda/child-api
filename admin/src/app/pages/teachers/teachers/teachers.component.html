@@ -28,7 +28,7 @@
   <tbody>
     <tr *ngFor="let teacher of basicTable.data">
       <td>{{teacher.name}}</td>
-      <td>{{teacher.description}}</td>
+      <td><div [innerHTML]="teacher.description"></div></td>
       <td>{{teacher.occupation}}</td>
       <td>
         <img style="height: 70px; width: 70px;" [src]="teacher.image" alt="">

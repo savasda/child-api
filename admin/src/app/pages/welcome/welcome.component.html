@@ -7,7 +7,9 @@
     <button (click)="onNavigateToTeachers()" nz-button nzType="primary">Добавить</button>
   </nz-col>
   <nz-col [nzSpan]="6">
-    <nz-statistic [nzValue]="programsQuantity" [nzTitle]="'У вас заведено'"></nz-statistic>
+    <ng-container *ngIf="(programs | async) as data">
+    <nz-statistic [nzValue]="data.tottal" [nzTitle]="'У вас заведено'"></nz-statistic>
+    </ng-container>
     <div>Программы</div>
     <button (click)="onNavigateToPrograms()" nz-button nzType="primary">Добавить</button>
   </nz-col>

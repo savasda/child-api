@@ -8,6 +8,7 @@ import { extname } from 'path';
 import { diskStorage } from  'multer';
 import { TeacherEntity } from 'shared/entities/teacher.entity';
 import { PagedRO } from 'shared/entities/paged.ro';
+import { AvatarDTO } from './models/avatar.dto';
 
 @Controller('teacher')
 export class TeacherController {
@@ -30,7 +31,7 @@ export class TeacherController {
   @ApiUnauthorizedResponse()
   @Post()
   @UseGuards(new AuthGuard())
-  async create(@Body(new ValidationPipe()) teacher: TeacherDTO) {
+  async create(@Body(new ValidationPipe()) teacher: TeacherDTO): Promise<TeacherEntity> {
     return await this.teacherService.create(teacher);
   }
 
@@ -53,7 +54,7 @@ export class TeacherController {
   @UseGuards(new AuthGuard())
   async boundPrograms(
     @Param('id') id: string,
-    @Body(new ValidationPipe()) data: {programsIds: string[]}) {
+    @Body(new ValidationPipe()) data: AvatarDTO) {
 
     return await this.teacherService.boundTeacherWithPrograms(data.programsIds, id);
   }
@@ -75,7 +76,7 @@ export class TeacherController {
   @ApiUnauthorizedResponse()
   @Post('avatar')
   @UseInterceptors(
-    FileInterceptor('image', {
+    FileInterceptor('file', {
       storage: diskStorage({
         destination: './static/avatars/teachers', 
         filename: (req, file, cb) => {

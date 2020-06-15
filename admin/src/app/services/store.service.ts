@@ -1,25 +1,25 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Program } from '../models/program.model';
-import { Teacher } from '../models/teacher.model';
+import { ProgramModel } from '../models/program.model';
+import { TeacherModel } from '../models/teacher.modal';
 
 @Injectable({
   providedIn: "root"
 })
 export class StoreService {
-  private programs = new BehaviorSubject<Array<Program>>(null);
-  private teachers = new BehaviorSubject<Array<Teacher>>(null);
+  private programs = new BehaviorSubject<Array<ProgramModel>>(null);
+  private teachers = new BehaviorSubject<Array<TeacherModel>>(null);
 
-  setPrograms(programs: Array<Program>) {
+  setPrograms(programs: Array<ProgramModel>) {
     this.programs.next(programs)
   }
-  setTeachers(teachers: Array<Teacher>) {
+  setTeachers(teachers: Array<TeacherModel>) {
     this.teachers.next(teachers);
   }
   getPrograms(): Observable<any> {
     return this.programs.asObservable();
   }
-  getTeachers(): Observable<Array<Teacher>> {
+  getTeachers(): Observable<Array<TeacherModel>> {
     return this.teachers.asObservable();
   }
 }
